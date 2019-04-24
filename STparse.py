@@ -20,7 +20,7 @@ def stparser(st_string, db):
     suffixlist = ['p(blue)', 'p(red)', 'IV-Ve', 'd/sd', 'blue', ':pec', 'IVe', 'pec', 'nir', '::.', 'sd:', 'red', 'sd?', 'Ve', 'sd', '::', ':b', ':p', ':', 'e', 'p', 'd', '?', '>', '?']
 
     # replace original string values M, L, Y, and T with empty character, 1, 2, and 3. Also removes spaces and null values
-    st_string = st_string.str.replace('M ', '4').str.replace('M', '').str.replace('L ', 'L4').str.replace('L', '1').str.replace('T ', 'T4').str.replace('T', '2').str.replace('Y ', 'Y4').str.replace('Y', '3').str.strip().str.replace(' ','').dropna()
+    st_string = st_string.str.replace('M ', 'M4').str.replace('M', '').str.replace('L ', 'L4').str.replace('L', '1').str.replace('T ', 'T4').str.replace('T', '2').str.replace('Y ', 'Y4').str.replace('Y', '3').str.strip().str.replace(' ','').dropna()
 
     # fix formatting for specific values. Change as necessary for strings with known issues. Below example did not include a closing parenthesis.
     st_string[641]=st_string[641]+')'
@@ -49,8 +49,6 @@ def stparser(st_string, db):
                 if str(g) in st_string[i]:
                     gravity+=str(g)
                     st_string[i]=st_string[i].replace(str(g), '').replace('amma', '')
-            gravity
-            suffix
             if '+' in st_string[i]:
                 st_string[i]=st_string[i].split('+', 1)[0]
             else:
